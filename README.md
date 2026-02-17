@@ -1,5 +1,7 @@
 ## WELCOME TO SwiftCart E-Commerce
 
+- **Live Link :** ```https://graceful-nasturtium-93ecd4.netlify.app/```
+
 ---
 ## 🛍️ API Endpoints
 ---
@@ -18,19 +20,9 @@ https://fakestoreapi.com/products/categories
 https://fakestoreapi.com/products/category/${category}
 ```
 
-Example:
-```bash
-https://fakestoreapi.com/products/category/jewelery
-```
-
 4. Get 🛍️ Single Product Detail
 ```bash
 https://fakestoreapi.com/products/${id}
-```
-
-Example:
-```bash
-https://fakestoreapi.com/products/1
 ```
 
 ---
@@ -144,4 +136,4 @@ Clicking the "Details" button on a card opens a modal with full product details:
 🧰 Technology Stack:
     HTML
     CSS (Vanilla / Tailwind / DaisyUI)
-    JavaScript (Vanilla only, no frameworks like React/Vue for this assignment)
+    JavaScript
