@@ -28,10 +28,16 @@ const displayCategories = (categories) => {
 
   // All button
   const allBtn = document.createElement("button");
-  allBtn.className = "btn btn-outline btn-primary";
+  allBtn.className = "btn btn-outline btn-primary"; 
   allBtn.innerText = "All";
-  allBtn.addEventListener("click", loadAllProducts);
+
+  allBtn.addEventListener("click", () => {
+    loadAllProducts();
+    setActiveButton(allBtn);
+  });
+
   levelContainer.appendChild(allBtn);
+  setActiveButton(allBtn);
 
   for (let category of categories) {
     let displayName =
@@ -43,10 +49,23 @@ const displayCategories = (categories) => {
 
     btn.addEventListener("click", () => {
       loadCategoryProduct(category);
+      setActiveButton(btn);
     });
 
     levelContainer.appendChild(btn);
   }
+};
+
+const setActiveButton = (clickedBtn) => {
+  const buttons = document.querySelectorAll("#level-container button");
+
+  buttons.forEach((btn) => {
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-outline");
+  });
+
+  clickedBtn.classList.remove("btn-outline");
+  clickedBtn.classList.add("btn-primary");
 };
 
 // Display Products
@@ -93,10 +112,8 @@ const displayProducts = (products) => {
       `;
   }
 };
-
 loadCategories();
 loadAllProducts();
-
 
 const loadTrendingProducts = async () => {
   const response = await fetch("https://fakestoreapi.com/products");
