@@ -22,13 +22,62 @@ const loadCategoryProduct = async (category) => {
   displayProducts(data);
 };
 
+// load product detail
+const loadProductDetail = async (id) => {
+  const url = `https://fakestoreapi.com/products/${id}`;
+  const res = await fetch(url);
+  const detail = await res.json();
+
+  displayProductModal(detail);
+};
+
+const displayProductModal = (product) => {
+  const modalContent = document.getElementById("modal-content");
+
+  modalContent.innerHTML = `
+    <h3 class="text-xl font-bold mb-4">${product.title}</h3>
+
+    <img src="${product.image}" 
+         class="w-40 mx-auto mb-4"/>
+
+    <p class="mb-2"><strong>Category:</strong> ${product.category}</p>
+    <p class="mb-2"><strong>Price:</strong> $${product.price}</p>
+
+    <p class="mb-2">
+      <strong>Rating:</strong> 
+      ${product.rating.rate} (${product.rating.count})
+    </p>
+
+    <p class="text-sm text-gray-600 mt-4">
+      ${product.description}
+    </p>
+
+    <div class="card-actions justify-between mt-4">
+      <button onclick="loadProductDetail(${product.id})" class="btn btn-soft btn-info btn-sm">
+          <i class="fa-solid fa-bag-shopping"></i> Buy Now
+      </button>
+      <button class="btn btn-soft btn-primary btn-sm">
+          <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+      </button>
+    </div>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  `;
+
+  document.getElementById("my_modal_5").showModal();
+};
+
 const displayCategories = (categories) => {
   const levelContainer = document.getElementById("level-container");
   levelContainer.innerHTML = "";
 
   // All button
   const allBtn = document.createElement("button");
-  allBtn.className = "btn btn-outline btn-primary"; 
+  allBtn.className = "btn btn-outline btn-primary";
   allBtn.innerText = "All";
 
   allBtn.addEventListener("click", () => {
@@ -99,7 +148,7 @@ const displayProducts = (products) => {
             <p class="text-xl font-bold">$${product.price}</p>
 
             <div class="card-actions justify-between mt-4">
-              <button class="btn btn-outline btn-sm">
+              <button onclick="loadProductDetail(${product.id})" class="btn btn-outline btn-sm">
                 <i class="fa-regular fa-eye"></i> Details
               </button>
               <button class="btn btn-primary btn-sm">
@@ -132,6 +181,9 @@ const loadTrendingProducts = async () => {
 
 const displayTrendingProducts = (products) => {
   const container = document.getElementById("trending-container");
+
+  if (!container) return;
+
   container.innerHTML = "";
 
   for (let product of products) {
@@ -160,7 +212,7 @@ const displayTrendingProducts = (products) => {
             <p class="text-xl font-bold">$${product.price}</p>
 
             <div class="card-actions justify-between mt-4">
-              <button class="btn btn-outline btn-sm">
+              <button onclick="loadProductDetail(${product.id})" class="btn btn-outline btn-sm">
                 <i class="fa-regular fa-eye"></i> Details
               </button>
               <button class="btn btn-primary btn-sm">
