@@ -85,10 +85,10 @@ https://fakestoreapi.com/products/1
 অন্যদিকে, === (Triple Equal) হলো Strict Equality Operator। এটি value এবং type দুটোই compare করে এবং কোনো type conversion করে না।
 - console.log(5 === "5")  → false; কারণ এখানে একটি number এবং অন্যটি string, তাই type আলাদা হওয়ায় ফলাফল false।
 #### 4) What is the significance of `async`/`await` in fetching API data?
-- **Ans**: const loadProducts = async () => {
-           const response = await fetch("https://fakestoreapi.com/products");
-           const data = await response.json();
-           console.log(data);
+- **Ans**: const loadProducts = async () => {   <br>
+           const response = await fetch("https://fakestoreapi.com/products");   <br>
+           const data = await response.json();     <br>
+           console.log(data);      <br>
            };
 এখানে async function-কে asynchronous করেছে। await ব্যবহার করার ফলে fetch() শেষ না হওয়া পর্যন্ত পরের লাইন execute হবে না। অর্থাৎ, await Promise resolve হওয়ার জন্য অপেক্ষা করে, তাই code sequential ভাবে চলে এবং .then() ব্যবহার করার তুলনায় বেশি readable হয়। async/await API fetching-কে সহজ, পরিষ্কার এবং error handling-friendly করে তোলে।           
 #### 5) Explain the concept of Scope in JavaScript (Global, Function, Block).
@@ -99,7 +99,7 @@ https://fakestoreapi.com/products/1
 1) Category Loading
 Load Product Categories dynamically on the UI (e.g., as filter buttons or a dropdown).
 
-2) Category Click → Product Data
+2) Category Click → Product Data 
 On clicking a category: load products of that specific category.
 Display in a grid layout (e.g., 3 or 4 columns).
 
