@@ -96,3 +96,65 @@ const displayProducts = (products) => {
 
 loadCategories();
 loadAllProducts();
+
+
+const loadTrendingProducts = async () => {
+  const response = await fetch("https://fakestoreapi.com/products");
+  const data = await response.json();
+
+  // Sort by highest rating
+  const sortedProducts = data.sort(
+    (a, b) => b.rating.rate - a.rating.rate
+  );
+
+  // Take top 3
+  const topThree = sortedProducts.slice(0, 3);
+
+  displayTrendingProducts(topThree);
+};
+
+const displayTrendingProducts = (products) => {
+  const container = document.getElementById("trending-container");
+  container.innerHTML = "";
+
+  for (let product of products) {
+    container.innerHTML += `
+        <div class="card bg-base-100 shadow-lg rounded-xl overflow-hidden">
+          <figure class="bg-gray-100 p-6">
+            <img src="${product.image}" 
+                class="h-52 mx-auto object-contain"/>
+          </figure>
+
+          <div class="card-body">
+            <div class="flex justify-between items-center">
+              <span class="badge  text-blue-800 bg-blue-100">
+                ${product.category}
+              </span>
+              <span class="text-sm font-semibold">
+                <i class="fa-solid fa-star text-yellow-400"></i> 
+                ${product.rating.rate} (${product.rating.count})
+              </span>
+            </div>
+
+            <h2 class="card-title">
+              ${product.title.slice(0, 35)}...
+            </h2>
+
+            <p class="text-xl font-bold">$${product.price}</p>
+
+            <div class="card-actions justify-between mt-4">
+              <button class="btn btn-outline btn-sm">
+                <i class="fa-regular fa-eye"></i> Details
+              </button>
+              <button class="btn btn-primary btn-sm">
+                <i class="fa-solid fa-cart-shopping"></i> Add
+              </button>
+            </div>
+
+          </div>
+        </div>
+      `;
+  }
+};
+
+loadTrendingProducts();

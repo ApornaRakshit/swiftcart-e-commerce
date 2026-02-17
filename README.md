@@ -65,6 +65,10 @@ https://fakestoreapi.com/products/1
 #### 7) Create a README file to answer the following questions-
 
 #### 1) What is the difference between `null` and `undefined`?
+- **null**: (typeof null === object), no value or "empty" means null is `an intentional absence of value` which is `assigned by developer`. When we want to set `no value on purpose`, we use null setting `object` propertices. 
+- **undefied**: (not defined) undefined means `a variable exists` but has `no value assigned` means value missing, type undefined. Function parameters are missing. JSON ignored.
+- let money;
+- console.log(money); // undefined
 
 #### 2) What is the use of the `map()` function in JavaScript? How is it different from `forEach()`?
 
